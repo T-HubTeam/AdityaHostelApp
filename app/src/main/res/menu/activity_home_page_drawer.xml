@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/change_password"
+            android:icon="@drawable/setting"
+            android:title="Change Password" />
+        <item
+            android:id="@+id/change_contactNo"
+            android:icon="@drawable/changecontact"
+            android:title="Change Contact Number" />
+
+        <item
+            android:id="@+id/view_account"
+            android:icon="@drawable/info"
+            android:title="My Details" />
+
+        <item
+            android:id="@+id/view_developed_by"
+            android:icon="@drawable/ic_developer_mode_black_24dp"
+            android:title="Developed By" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            
+        </menu>
+    </item>
+
+</menu>

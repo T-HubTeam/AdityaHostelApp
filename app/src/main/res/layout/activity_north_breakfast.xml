@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="technicalhub.io.purshotam.adityahostelapp.NorthBreakfast">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+       <!-- <include android:id="@+id/toolbarNB"
+            layout="@layout/toolbar"/>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/north_canteen_breakfast_feedback"
+            android:textStyle="italic"
+            android:textSize="18sp"
+            android:textColor="@color/colorDarkOrange"
+            android:id="@+id/textViewNorthBreakfast"
+            android:layout_centerHorizontal="true"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayout3"
+            android:layout_below="@+id/textViewNorthBreakfast"
+            android:background="@color/white"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_boiled_egg"
+                android:id="@+id/textView4"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg1">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorText"
+                    android:id="@+id/rb1"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textColor="@color/colorText"
+                    android:textStyle="italic"
+                    android:id="@+id/rb2"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorText"
+                    android:id="@+id/rb3"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks1"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_2_bread_with_jam_conflakes_with_milk"
+                android:id="@+id/textView5"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:textColor="@color/colorText" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_name"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewItemName"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextItemName2"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5"
+                    android:inputType="" />
+
+            </TableRow>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg2">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:id="@+id/rb4"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textStyle="italic"
+                    android:id="@+id/rb5"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:id="@+id/rb6"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks1"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks2"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_idli_with_sambar"
+                android:id="@+id/textView6"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg3">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:id="@+id/rb7"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textStyle="italic"
+                    android:id="@+id/rb8"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:id="@+id/rb9"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks2"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks3"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_4_two_chutneys"
+                android:id="@+id/textView7"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_name"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewItemName1"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextItemName4"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg4">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:id="@+id/rb10"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textStyle="italic"
+                    android:id="@+id/rb11"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:id="@+id/rb12"
+                    android:checked="false" />
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks3"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks4"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_5_any_1_indian_breakfast"
+                android:id="@+id/textView8"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_name"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewItemName2"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:id="@+id/editTextItemName5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg5">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:id="@+id/rb13"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textStyle="italic"
+                    android:id="@+id/rb14"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:id="@+id/rb15"
+                    android:checked="false" />
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks4"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks5"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_6_tea_milk"
+                android:id="@+id/textView9"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_name"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewItemName3"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextItemName6"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/rg6">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textStyle="italic"
+                    android:id="@+id/rb16"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/good"
+                    android:textStyle="italic"
+                    android:id="@+id/rb17"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/excellent"
+                    android:textStyle="italic"
+                    android:id="@+id/rb18"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remarks"
+                    android:textStyle="italic"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:id="@+id/textViewRemarks5"
+                    android:layout_column="1"
+                    android:layout_span="1"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorText"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextRemarks6"
+                    android:layout_column="2"
+                    android:layout_span="1"
+                    android:layout_weight="5" android:inputType="" />
+
+            </TableRow>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_background"
+                android:id="@+id/buttonNorthBreakfast"
+                android:onClick="NorthBreakfastMethod"/>
+
+        </TableLayout>
+
+    </RelativeLayout>
+
+
+</ScrollView>

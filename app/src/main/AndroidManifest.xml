@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="technicalhub.io.purshotam.adityahostelapp">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.LoginPage"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.RegisterPage"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.LoginPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:label="@string/title_activity_home_page"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ServiceConnect"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.CanteenFeedback"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.RulesRegulationsType"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.RulesRegulation"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.RulesRegulationsType"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.RegisterComplain"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.ServiceConnect"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ComplainStatus"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.ServiceConnect"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ComplainHistory"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.ServiceConnect"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.NorthBreakfast"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.SouthBreakfast"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.NorthLunch"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.SouthLunch"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.NorthEveningSnacks"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.SouthEveningSnacks"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.NorthDinner"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.SouthDinner"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ChangePassword"
+            android:label="Change Password"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ChangeContactNumber"
+            android:label="Change Contact Number"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.ImportantContact"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="technicalhub.io.purshotam.adityahostelapp.RulesRegulationsType"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait" />
+        <activity android:name="technicalhub.io.purshotam.adityahostelapp.DevelopedBy"
+            android:label="Developed By"
+            android:parentActivityName="technicalhub.io.purshotam.adityahostelapp.HomePage"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>
