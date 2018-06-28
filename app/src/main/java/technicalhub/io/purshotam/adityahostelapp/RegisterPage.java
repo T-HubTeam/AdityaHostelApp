@@ -2,11 +2,13 @@ package technicalhub.io.purshotam.adityahostelapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -15,6 +17,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,33 +61,99 @@ public class RegisterPage extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             progressDialog.dismiss();
-                            switch (response){
-                                case "TRUE":
-                                    Toast.makeText(RegisterPage.this,"OTP sent to your official EmailID",Toast.LENGTH_SHORT).show();
-                                    sharedPreferencesData.SaveInstallation(true);
-                                    sharedPreferencesData.SaveBlocked(false);
-                                    startActivity(new Intent(RegisterPage.this,LoginPage.class));
-                                    finish();
-                                    break;
-                                case "User not found":
-                                    Toast.makeText(RegisterPage.this,"Sorry !!! User not found",Toast.LENGTH_SHORT).show();
-                                    //Trialcount is taken to get record of how many times a invalid-attempts are made
-                                    TrialCount++;
-                                    if(TrialCount==3){
-                                        Toast.makeText(RegisterPage.this,"You have no access to use this app...",Toast.LENGTH_LONG).show();
-                                        sharedPreferencesData.SaveBlocked(true);
-                                    }
-                                    break;
-                                default:
-                                    Toast.makeText(RegisterPage.this,"Unable to process your request. Try again Later.",Toast.LENGTH_LONG).show();
-                                    break;
+                            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage.this);
+                            View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+                            TextView alertTxt = view.findViewById(R.id.txtViewCusAlertDlg);
+                            TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
+                            Button btnOK = view.findViewById(R.id.btnCusAlertDlg);
+                            builder.setView(view);
+                            final AlertDialog dialog = builder.create();
+                            String mobile="";
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
+                                JSONObject statusObject = jsonArray.getJSONObject(0);
+                                String status = statusObject.getString("status");
+                                if (status.equals("TRUE")){
+                                    JSONObject mobileObject = jsonArray.getJSONObject(1);
+                                    mobile = mobileObject.getString("mobile");
+                                }
+                                switch (status){
+                                    case "TRUE":
+                                        alertTxt.setText("Alert");
+                                        dialog.show();
+                                        if(!mobile.equals("Mobile number not found")){
+                                            String first = mobile.substring(0,2);
+                                            String last = mobile.substring(7,10);
+                                            sharedPreferencesData.SaveInstallation(true);
+                                            sharedPreferencesData.SaveBlocked(false);
+                                            msg.setText("Temporary password sent to "+first+"*****"+last);
+                                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    dialog.cancel();
+                                                    startActivity(new Intent(RegisterPage.this,LoginPage.class));
+                                                    finish();
+                                                }
+                                            });
+                                        }
+                                        else{
+                                            msg.setText(mobile);
+                                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+                                        }
+                                        //Toast.makeText(RegisterPage.this,"OTP sent to your official EmailID",Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case "User not found":
+                                        msg.setText("Sorry !!! User not found");
+                                        dialog.show();
+                                        btnOK.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                        //Toast.makeText(RegisterPage.this,"",Toast.LENGTH_SHORT).show();
+                                        //Trialcount is taken to get record of how many times a invalid-attempts are made
+                                        TrialCount++;
+                                        if(TrialCount>=3){
+                                            msg.setText("Number of trails exceeded and you have no more access to use this app...");
+                                            dialog.show();
+                                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+                                            //Toast.makeText(RegisterPage.this,"You have no access to use this app...",Toast.LENGTH_LONG).show();
+                                            sharedPreferencesData.SaveBlocked(true);
+                                        }
+                                        break;
+                                    default:
+                                        msg.setText("Unable to process your request. Try again Later.");
+                                        dialog.show();
+                                        btnOK.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                        //Toast.makeText(RegisterPage.this,"Unable to process your request. Try again Later.",Toast.LENGTH_LONG).show();
+                                        break;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
-                    Toast.makeText(RegisterPage.this,""+error,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterPage.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
             }){
                 @Override

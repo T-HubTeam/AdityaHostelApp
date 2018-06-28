@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/txtViewCusAlertDlg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:text="Error"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtViewCusAlertDlgMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtViewCusAlertDlg"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/btnCusAlertDlg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Ok"
+        android:layout_below="@id/txtViewCusAlertDlgMsg"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_background"/>
+</RelativeLayout>

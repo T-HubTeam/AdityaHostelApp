@@ -61,13 +61,15 @@ public class ComplainHistory extends AppCompatActivity {
                         if(!response.equals("False")) {
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String string_description = jsonObject.getString("description");
                                     String string_category = jsonObject.getString("category");
                                     String string_code = jsonObject.getString("complain_id");
                                     String string_date = jsonObject.getString("date_time").substring(0,10);
-                                    HistoryData h = new HistoryData(string_category, string_code, string_description,string_date);
+                                    String date[] = (string_date.split("-"));
+                                    String Stringdate = date[2]+"-"+date[1]+"-"+date[0];
+                                    HistoryData h = new HistoryData(string_category, string_code, string_description,Stringdate);
                                     hist_list.add(h);
                                 }
                                 HistoryAdapter historyAdapter = new HistoryAdapter(hist_list, ComplainHistory.this);

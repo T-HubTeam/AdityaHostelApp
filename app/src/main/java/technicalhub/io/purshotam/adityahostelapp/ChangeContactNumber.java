@@ -1,12 +1,14 @@
 package technicalhub.io.purshotam.adityahostelapp;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,6 +29,11 @@ public class ChangeContactNumber extends AppCompatActivity {
     SharedPreferencesData sharedPreferencesData;
     ProgressBar progressBar;
     private String contactNo;
+    AlertDialog.Builder builder;
+    View view;
+    TextView msg;
+    Button btnOK;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,59 +45,93 @@ public class ChangeContactNumber extends AppCompatActivity {
         buttonFiled = findViewById(R.id.buttonFiled);
         buttonFiled.setText(R.string.change);
         editTextField.setHint("Enter your mobile number");
+        builder = new AlertDialog.Builder(ChangeContactNumber.this);
+        view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+        msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
+        btnOK = view.findViewById(R.id.btnCusAlertDlg);
+        builder.setView(view);
+        alertDialog = builder.create();
     }
 
     public void ChangeNumber(View view) {
         if(buttonFiled.getText().toString().equals("Change")) {
-            if (sharedPreferencesData.isNetworkAvailable()) {
-                contactNo = editTextField.getText().toString();
-                progressBar.setVisibility(View.VISIBLE);
-                editTextField.setVisibility(View.GONE);
-                buttonFiled.setVisibility(View.GONE);
-                StringRequest stringRequest1 = new StringRequest(Request.Method.POST, urlSendOTP,
-                        new Response.Listener<String>() {
+            if(editTextField.getText().toString().length()==10 || editTextField.getText().toString().length()==12 || editTextField.getText().toString().length()==13){
+                if (sharedPreferencesData.GetContactNo().equals(editTextField.getText().toString())) {
+                    msg.setText("No change found in mobile number");
+                    alertDialog.show();
+                    btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alertDialog.cancel();
+                        }
+                    });
+                }
+                else {
+                    if (sharedPreferencesData.isNetworkAvailable()) {
+                        contactNo = editTextField.getText().toString();
+                        progressBar.setVisibility(View.VISIBLE);
+                        editTextField.setVisibility(View.GONE);
+                        buttonFiled.setVisibility(View.GONE);
+                        StringRequest stringRequest1 = new StringRequest(Request.Method.POST, urlSendOTP,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        progressBar.setVisibility(View.GONE);
+                                        editTextField.setVisibility(View.VISIBLE);
+                                        buttonFiled.setVisibility(View.VISIBLE);
+                                        switch (response) {
+                                            case "SENT":
+                                                Toast.makeText(ChangeContactNumber.this, "OTP sent to your new number", Toast.LENGTH_SHORT).show();
+                                                editTextField.setText("");
+                                                editTextField.setHint("Enter the OTP");
+                                                buttonFiled.setText("Confirm OTP");
+                                                break;
+                                            case "NOTSENT":
+                                                msg.setText("Unable to process your request.Please try again later");
+                                                alertDialog.show();
+                                                btnOK.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        alertDialog.cancel();
+                                                    }
+                                                });
+                                                editTextField.setText("");
+                                                editTextField.setHint("Enter the OTP");
+                                                buttonFiled.setText("Confirm OTP");
+                                                //Toast.makeText(ChangeContactNumber.this, "Please try again", Toast.LENGTH_LONG).show();
+                                                break;
+                                            default:
+                                                Toast.makeText(ChangeContactNumber.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                                                break;
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
                             @Override
-                            public void onResponse(String response) {
+                            public void onErrorResponse(VolleyError error) {
                                 progressBar.setVisibility(View.GONE);
                                 editTextField.setVisibility(View.VISIBLE);
                                 buttonFiled.setVisibility(View.VISIBLE);
-                                switch (response) {
-                                    case "SENT":
-                                        Toast.makeText(ChangeContactNumber.this, "OTP sent", Toast.LENGTH_SHORT).show();
-                                        editTextField.setText("");
-                                        editTextField.setHint("Enter the OTP");
-                                        buttonFiled.setText("Confirm OTP");
-                                        break;
-                                    case "NOTSENT":
-                                        Toast.makeText(ChangeContactNumber.this, "Please try again", Toast.LENGTH_LONG).show();
-                                        break;
-                                    default:
-                                        Toast.makeText(ChangeContactNumber.this, "Something went wrong", Toast.LENGTH_LONG).show();
-                                        break;
-                                }
+                                Toast.makeText(ChangeContactNumber.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                             }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.GONE);
-                        editTextField.setVisibility(View.VISIBLE);
-                        buttonFiled.setVisibility(View.VISIBLE);
-                        Toast.makeText(ChangeContactNumber.this, "" + error, Toast.LENGTH_SHORT).show();
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> param = new HashMap<>();
+                                param.put("mobNo", editTextField.getText().toString());
+                                param.put("regNo", sharedPreferencesData.GetRegistrationNo());
+                                return param;
+                            }
+                        };
+                        MySingleton.getInstance(ChangeContactNumber.this).addToRequestQueue(stringRequest1);
+                    } else {
+                        Toast.makeText(ChangeContactNumber.this, "No network", Toast.LENGTH_LONG).show();
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> param = new HashMap<>();
-                        param.put("mobNo", editTextField.getText().toString());
-                        param.put("regNo", sharedPreferencesData.GetRegistrationNo());
-                        return param;
-                    }
-                };
-                MySingleton.getInstance(ChangeContactNumber.this).addToRequestQueue(stringRequest1);
+                }
             }
-            else{
-                Toast.makeText(ChangeContactNumber.this,"No network",Toast.LENGTH_LONG).show();
+            else {
+                editTextField.setError("Invalid number");
             }
+
         }
         else if(buttonFiled.getText().toString().equals("Confirm OTP")) {
             if (sharedPreferencesData.isNetworkAvailable()) {
@@ -109,7 +150,18 @@ public class ChangeContactNumber extends AppCompatActivity {
                                     finish();
                                 } else {
                                     progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(ChangeContactNumber.this, "Wrong OTP", Toast.LENGTH_LONG).show();
+                                    msg.setText("You entered wrong OTP. Please check and verify");
+                                    alertDialog.show();
+                                    btnOK.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            alertDialog.cancel();
+                                        }
+                                    });
+                                    progressBar.setVisibility(View.GONE);
+                                    editTextField.setVisibility(View.VISIBLE);
+                                    buttonFiled.setVisibility(View.VISIBLE);
+                                    //Toast.makeText(ChangeContactNumber.this, "Wrong OTP", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }, new Response.ErrorListener() {
@@ -118,7 +170,7 @@ public class ChangeContactNumber extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         editTextField.setVisibility(View.VISIBLE);
                         buttonFiled.setVisibility(View.VISIBLE);
-                        Toast.makeText(ChangeContactNumber.this, "" + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangeContactNumber.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
                 }) {
                     @Override

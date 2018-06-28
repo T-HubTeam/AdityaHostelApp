@@ -1,5 +1,6 @@
 package technicalhub.io.purshotam.adityahostelapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -142,13 +144,13 @@ public class ChangePassword extends AppCompatActivity {
     public void changePassword(View view) {
         if (old_password.getText().toString().equals("") || new_password.getText().toString().equals("") || confirm_password.getText().toString().equals("")) {
             if (old_password.getText().toString().equals("")) {
-                old_password.setError("Enter the old password");
+                old_password.setError("Enter old password");
             }
             if (new_password.getText().toString().equals("")) {
-                new_password.setError("Enter the new password");
+                new_password.setError("Enter new password");
             }
             if (confirm_password.getText().toString().equals("")) {
-                confirm_password.setError("Confirm your password");
+                confirm_password.setError("Confirm new password");
             }
         } else if (sharedPreferencesData.isNetworkAvailable()) {
             if (new_password.getText().toString().equals(confirm_password.getText().toString())) {
@@ -160,6 +162,12 @@ public class ChangePassword extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 progressDialog.dismiss();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassword.this);
+                                View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+                                TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
+                                Button btnOK = view.findViewById(R.id.btnCusAlertDlg);
+                                builder.setView(view);
+                                final AlertDialog alertDialog = builder.create();
                                 switch (response) {
                                     case "TRUE":
                                         Toast.makeText(ChangePassword.this, "Password changed successfully...", Toast.LENGTH_LONG).show();
@@ -169,10 +177,26 @@ public class ChangePassword extends AppCompatActivity {
                                         finish();
                                         break;
                                     case "FALSE":
-                                        Toast.makeText(ChangePassword.this, "Unable to process your request", Toast.LENGTH_SHORT).show();
+                                        msg.setText("Unable to process your request");
+                                        alertDialog.show();
+                                        btnOK.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                alertDialog.cancel();
+                                            }
+                                        });
+                                        //Toast.makeText(ChangePassword.this, "Unable to process your request", Toast.LENGTH_SHORT).show();
                                         break;
                                     case "WrongPassword":
-                                        Toast.makeText(ChangePassword.this, "Sorry the password you entered is wrong", Toast.LENGTH_SHORT).show();
+                                        msg.setText("Sorry the password you entered is wrong");
+                                        alertDialog.show();
+                                        btnOK.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                alertDialog.cancel();
+                                            }
+                                        });
+                                        //Toast.makeText(ChangePassword.this, "Sorry the password you entered is wrong", Toast.LENGTH_SHORT).show();
                                         break;
                                     default:
                                         Toast.makeText(ChangePassword.this, response, Toast.LENGTH_SHORT).show();

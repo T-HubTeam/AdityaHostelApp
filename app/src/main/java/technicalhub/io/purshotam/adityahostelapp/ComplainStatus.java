@@ -67,13 +67,15 @@ public class ComplainStatus extends AppCompatActivity {
                         if (!response.equals("FALSE")) {
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String string_description = jsonObject.getString("description");
                                     String string_category = jsonObject.getString("category");
                                     String string_code = jsonObject.getString("complain_id");
                                     String string_date = jsonObject.getString("date_time").substring(0,10);
-                                    StatusData statusData = new StatusData(string_category, string_description, string_code,string_date);
+                                    String date[] = (string_date.split("-"));
+                                    String Stringdate = date[2]+"-"+date[1]+"-"+date[0];
+                                    StatusData statusData = new StatusData(string_category, string_description, string_code,Stringdate);
                                     stat_list.add(statusData);
                                 }
                                 StatusAdapter statusAdapter = new StatusAdapter(stat_list, ComplainStatus.this);

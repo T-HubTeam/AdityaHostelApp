@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -112,6 +113,12 @@ public class LoginPage extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+                                    View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
+                                    TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
+                                    Button btnOk = view.findViewById(R.id.btnCusAlertDlg);
+                                    builder.setView(view);
+                                    final AlertDialog alertDialog = builder.create();
                                     switch (jsonObject.getString("status")) {
                                         case "TRUE":
                                             sharedPreferencesData.SaveName(jsonObject.getString("name"));
@@ -134,15 +141,39 @@ public class LoginPage extends AppCompatActivity {
                                             finish();
                                             break;
                                         case "UserNotFound":
-                                            Toast.makeText(LoginPage.this, "User not found", Toast.LENGTH_SHORT).show();
+                                            msg.setText("User not found");
+                                            alertDialog.show();
+                                            btnOk.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    alertDialog.cancel();
+                                                }
+                                            });
+                                            //Toast.makeText(LoginPage.this, "User not found", Toast.LENGTH_SHORT).show();
                                             et_regNo.setText("");
                                             break;
                                         case "WrongPassword":
-                                            Toast.makeText(LoginPage.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                            msg.setText("Wrong password");
+                                            alertDialog.show();
+                                            btnOk.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    alertDialog.cancel();
+                                                }
+                                            });
+                                            //Toast.makeText(LoginPage.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                                             et_password.setText("");
                                             break;
                                         default:
-                                            Toast.makeText(LoginPage.this, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
+                                            msg.setText("Wrong password");
+                                            alertDialog.show();
+                                            btnOk.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    alertDialog.cancel();
+                                                }
+                                            });
+                                            //Toast.makeText(LoginPage.this, jsonObject.getString("status"), Toast.LENGTH_SHORT).show();
                                             break;
                                     }
                                 } catch (JSONException e) {
@@ -175,7 +206,7 @@ public class LoginPage extends AppCompatActivity {
     public void ForgotPassword(View view) {
         if(sharedPreferencesData.isNetworkAvailable()) {
             Intent toRegister = new Intent(LoginPage.this, RegisterPage.class);
-            toRegister.putExtra("ButtonText", "Request Passoword");
+            toRegister.putExtra("ButtonText", "Request Password");
             startActivity(toRegister);
             //finish();
         }
