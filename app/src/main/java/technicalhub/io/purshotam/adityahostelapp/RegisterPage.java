@@ -62,6 +62,7 @@ public class RegisterPage extends AppCompatActivity {
                         public void onResponse(String response) {
                             progressDialog.dismiss();
                             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage.this);
+                            builder.setCancelable(false);
                             View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
                             TextView alertTxt = view.findViewById(R.id.txtViewCusAlertDlg);
                             TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);

@@ -46,6 +46,7 @@ public class ChangeContactNumber extends AppCompatActivity {
         buttonFiled.setText(R.string.change);
         editTextField.setHint("Enter your mobile number");
         builder = new AlertDialog.Builder(ChangeContactNumber.this);
+        builder.setCancelable(false);
         view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
         msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
         btnOK = view.findViewById(R.id.btnCusAlertDlg);

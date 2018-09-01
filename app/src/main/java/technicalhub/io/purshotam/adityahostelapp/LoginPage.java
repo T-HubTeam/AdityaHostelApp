@@ -114,6 +114,7 @@ public class LoginPage extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
+                                    builder.setCancelable(false);
                                     View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
                                     TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
                                     Button btnOk = view.findViewById(R.id.btnCusAlertDlg);

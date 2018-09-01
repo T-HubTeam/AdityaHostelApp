@@ -163,6 +163,7 @@ public class ChangePassword extends AppCompatActivity {
                             public void onResponse(String response) {
                                 progressDialog.dismiss();
                                 AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassword.this);
+                                builder.setCancelable(false);
                                 View view = getLayoutInflater().inflate(R.layout.custom_alert_dialog,null);
                                 TextView msg = view.findViewById(R.id.txtViewCusAlertDlgMsg);
                                 Button btnOK = view.findViewById(R.id.btnCusAlertDlg);

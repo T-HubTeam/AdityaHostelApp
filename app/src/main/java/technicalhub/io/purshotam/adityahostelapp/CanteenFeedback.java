@@ -81,10 +81,10 @@ public class CanteenFeedback extends AppCompatActivity {
                         int time = Integer.parseInt(response);
                         if(time == 12345){
                             canteenlayout.setVisibility(View.VISIBLE);
-                            Toast.makeText(getApplicationContext(),"You have already registered the feedback...",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"You have already submitted the feedback...",Toast.LENGTH_SHORT).show();
                         }else if(time == 54321){
                             canteenlayout.setVisibility(View.VISIBLE);
-                            Toast.makeText(getApplicationContext(),"Sorry !!!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Sorry !! please check the feedback timings",Toast.LENGTH_SHORT).show();
                         }
                         else if(time >= (7*60+30) && time <=(21*60))
                         {
