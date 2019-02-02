@@ -52,11 +52,13 @@ public class CanteenFeedback extends AppCompatActivity {
             mess = "s";
         }
         //Actual timing 7:30 to 9:00
-        if(Time >= (7*60+30) && Time <= (9*60)){
+        //Change 2 BBK 7:00 AM to 8:00 AM
+        if(Time >= (7*60) && Time <= (8*60)){
             food = mess+"Breakfast";
         }
         //Actual timing 12:00 to 2:00
-        else if(Time >= (12*60) && Time <= (14*60)){
+        //Change 2 BBK 12:00 PM to 1:30 PM
+        else if(Time >= (12*60) && Time <= (13*60+30)){
             food = mess+"Lunch";
         }
         //Actual timing 4:30 to 6

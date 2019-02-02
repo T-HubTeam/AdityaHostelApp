@@ -34,7 +34,8 @@ public class RegisterComplain extends AppCompatActivity implements AdapterView.O
 
     private EditText description;
     private ImageView imageView;
-    public String spiner[]={" ","Electricity","Plumbing","Carpentry","Others"};
+    //BBK Change 1
+    public String spiner[]={" ","Electricity","Plumbing","Carpentry","Civil","Network","Others"};
     private static final int CAM=100,GAL=101;
     private SharedPreferencesData sharedPreferencesData;
     private String image="NoImage",category,code;
@@ -104,8 +105,11 @@ public class RegisterComplain extends AppCompatActivity implements AdapterView.O
             case 1: code="EL"; drop.setVisibility(View.GONE); break;
             case 2: code="PL"; drop.setVisibility(View.GONE); break;
             case 3: code="CP"; drop.setVisibility(View.GONE); break;
-            case 4: code="FD"; drop.setVisibility(View.GONE); break;
-            case 5: code="OT"; drop.setVisibility(View.GONE); break;
+            //case 4: code="FD"; drop.setVisibility(View.GONE); break;
+            //BBK Change 2
+            case 4: code="CI"; drop.setVisibility(View.GONE); break;
+            case 5: code="NE"; drop.setVisibility(View.GONE); break;
+            case 6: code="OT"; drop.setVisibility(View.GONE); break;
         }
     }
 
@@ -117,10 +121,10 @@ public class RegisterComplain extends AppCompatActivity implements AdapterView.O
     public void Submit(View view) {
         if(description.getText().toString().equals("") || category.equals(" ")){
             if(description.getText().toString().equals("")){
-                description.setError("Write some description of your complain");
+                description.setError("Write some description of your complaint");
             }
             if(category.equals("")){
-                Toast.makeText(RegisterComplain.this,"Select the category of the complain",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterComplain.this,"Select the category of the complaint",Toast.LENGTH_SHORT).show();
             }
         }
         else{
@@ -136,10 +140,10 @@ public class RegisterComplain extends AppCompatActivity implements AdapterView.O
                                 switch(response){
                                     case "SavedWithImage":
                                     case "SavedWithoutImage":
-                                        Toast.makeText(RegisterComplain.this,"Complain registered successfully",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterComplain.this,"Complaint registered successfully",Toast.LENGTH_SHORT).show();
                                         Notification.Builder nofication=new Notification.Builder(RegisterComplain.this);
                                         nofication.setContentTitle("Service Connect");
-                                        nofication.setContentText("The complain you registered is under processing");
+                                        nofication.setContentText("The complaint you registered is under processing");
                                         nofication.setTicker("New Notification");
                                         nofication.setSmallIcon(R.drawable.aditya_logo);
                                         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
