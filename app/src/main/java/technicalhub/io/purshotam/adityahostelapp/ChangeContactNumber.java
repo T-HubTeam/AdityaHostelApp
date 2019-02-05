@@ -24,8 +24,8 @@ public class ChangeContactNumber extends AppCompatActivity {
 
     private EditText editTextField;
     private Button buttonFiled;
-    private static final String urlSendOTP="https://technicalhub.io/service_connect/app/sendOtp.php";
-    private static final String urlConfirmOTP="https://technicalhub.io/service_connect/app/confirmOtp.php";
+    private static final String urlSendOTP = "https://technicalhub.io/service_connect/app/sendOtp.php";
+    private static final String urlConfirmOTP = "https://technicalhub.io/service_connect/app/confirmOtp.php";
     SharedPreferencesData sharedPreferencesData;
     ProgressBar progressBar;
     private String contactNo;
@@ -88,7 +88,7 @@ public class ChangeContactNumber extends AppCompatActivity {
                                                 buttonFiled.setText("Confirm OTP");
                                                 break;
                                             case "NOTSENT":
-                                                msg.setText("Unable to process your request.Please try again later");
+                                                msg.setText("Unable to process your request.Please try again later.");
                                                 alertDialog.show();
                                                 btnOK.setOnClickListener(new View.OnClickListener() {
                                                     @Override
@@ -120,6 +120,7 @@ public class ChangeContactNumber extends AppCompatActivity {
                                 Map<String, String> param = new HashMap<>();
                                 param.put("mobNo", editTextField.getText().toString());
                                 param.put("regNo", sharedPreferencesData.GetRegistrationNo());
+                                param.put("emailID",sharedPreferencesData.GetEmailId());
                                 return param;
                             }
                         };
