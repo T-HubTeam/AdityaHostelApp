@@ -17,6 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -38,6 +42,7 @@ public class NorthEveningSnacks extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
     Calendar calendar;
     private static final String urlNorthEveningSnacks="https://technicalhub.io/canteen_feedback/insertnorthcanteensnacks.php";
+    private static final String urlNorthItems = "https://technicalhub.io/canteen_feedback/RetrievingCanteenItems.php";
     private SharedPreferencesData sharedPreferencesData;
     ProgressDialog progressDialog;
     @Override
@@ -53,6 +58,59 @@ public class NorthEveningSnacks extends AppCompatActivity {
         editTextRemarks2 = findViewById(R.id.editTextRemarks17);
         editTextItemName1 = findViewById(R.id.editTextItemName10);
         editTextItemName2 = findViewById(R.id.editTextItemName11);
+        northSnacksItems();
+    }
+
+    private void northSnacksItems() {
+        if (sharedPreferencesData.isNetworkAvailable())
+        {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST,urlNorthItems,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressDialog.dismiss();
+                            //if(!response.equals("False")) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String ncscolone = jsonObject.getString("ncscolone");
+                                    String ncscoltwo = jsonObject.getString("ncscoltwo");
+                                    editTextItemName1.setText(ncscolone);
+                                    editTextItemName2.setText(ncscoltwo);
+                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
+                                    //hist_list.add(h);
+                                }
+                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
+                                //recyclerView.setAdapter(historyAdapter);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            //}
+                            //else{
+                            //history_not_found.setVisibility(View.VISIBLE);
+                            //}
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),""+error,Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> param=new HashMap<>();
+                    param.put("mess",sharedPreferencesData.GetMess());
+                    return param;
+                }
+            };
+            MySingleton.getInstance(NorthEveningSnacks.this).addToRequestQueue(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(NorthEveningSnacks.this,"No network",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -17,6 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -37,6 +41,7 @@ public class SouthLunch extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
     Calendar calendar;
     private static final String urlSouthLunch="https://technicalhub.io/canteen_feedback/insertsouthcanteenlunch.php";
+    private static final String urlSouthItems = "https://technicalhub.io/canteen_feedback/RetrievingCanteenItems.php";
     private SharedPreferencesData sharedPreferencesData;
 
     @Override
@@ -70,6 +75,67 @@ public class SouthLunch extends AppCompatActivity {
         editTextItemName7 = findViewById(R.id.editTextItemNameSL7);
         editTextItemName8 = findViewById(R.id.editTextItemNameSL8);
         editTextItemName9 = findViewById(R.id.editTextItemNameSL9);
+        southLunchItems();
+    }
+
+    private void southLunchItems() {
+        if (sharedPreferencesData.isNetworkAvailable())
+        {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST,urlSouthItems,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressDialog.dismiss();
+                            //if(!response.equals("False")) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String sclcoltwo = jsonObject.getString("sclcoltwo");
+                                    String sclcolfour = jsonObject.getString("sclcolfour");
+                                    String sclcolfive = jsonObject.getString("sclcolfive");
+                                    String sclcolseven = jsonObject.getString("sclcolseven");
+                                    String sclcoleight = jsonObject.getString("sclcoleight");
+                                    String sclcolnine = jsonObject.getString("sclcolnine");
+                                    editTextItemName2.setText(sclcoltwo);
+                                    editTextItemName4.setText(sclcolfour);
+                                    editTextItemName5.setText(sclcolfive);
+                                    editTextItemName7.setText(sclcolseven);
+                                    editTextItemName8.setText(sclcoleight);
+                                    editTextItemName9.setText(sclcolnine);
+                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
+                                    //hist_list.add(h);
+                                }
+                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
+                                //recyclerView.setAdapter(historyAdapter);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            //}
+                            //else{
+                            //history_not_found.setVisibility(View.VISIBLE);
+                            //}
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),""+error,Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> param=new HashMap<>();
+                    param.put("mess",sharedPreferencesData.GetMess());
+                    return param;
+                }
+            };
+            MySingleton.getInstance(SouthLunch.this).addToRequestQueue(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(SouthLunch.this,"No network",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -17,6 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -37,6 +41,7 @@ public class SouthBreakfast extends AppCompatActivity {
     Calendar calendar;
     int count = 1;
     private static final String urlSouthBreakfast="https://technicalhub.io/canteen_feedback/insertsouthcanteenbreakfast.php";
+    private static final String urlSouthItems = "https://technicalhub.io/canteen_feedback/RetrievingCanteenItems.php";
     private SharedPreferencesData sharedPreferencesData;
 
     @Override
@@ -57,6 +62,61 @@ public class SouthBreakfast extends AppCompatActivity {
         editTextItemNameSB3 = findViewById(R.id.editTextItemNameSB3);
         editTextItemNameSB4 = findViewById(R.id.editTextItemNameSB4);
         editTextItemNameSB5 = findViewById(R.id.editTextItemNameSB5);
+        southBreakfastItems();
+    }
+
+    private void southBreakfastItems() {
+        if (sharedPreferencesData.isNetworkAvailable())
+        {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST,urlSouthItems,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressDialog.dismiss();
+                            //if(!response.equals("False")) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String scbcolthree = jsonObject.getString("scbcolthree");
+                                    String scbcolfour = jsonObject.getString("scbcolfour");
+                                    String scbcolfive = jsonObject.getString("scbcolfive");
+                                    editTextItemNameSB3.setText(scbcolthree);
+                                    editTextItemNameSB4.setText(scbcolfour);
+                                    editTextItemNameSB5.setText(scbcolfive);
+                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
+                                    //hist_list.add(h);
+                                }
+                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
+                                //recyclerView.setAdapter(historyAdapter);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            //}
+                            //else{
+                            //history_not_found.setVisibility(View.VISIBLE);
+                            //}
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(),""+error,Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> param=new HashMap<>();
+                    param.put("mess",sharedPreferencesData.GetMess());
+                    return param;
+                }
+            };
+            MySingleton.getInstance(SouthBreakfast.this).addToRequestQueue(stringRequest);
+        }
+        else
+        {
+            Toast.makeText(SouthBreakfast.this,"No network",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
