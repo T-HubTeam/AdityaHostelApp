@@ -79,9 +79,7 @@ public class NorthBreakfast extends AppCompatActivity {
                             //progressDialog.dismiss();
                             //if(!response.equals("False")) {
                             try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    JSONObject jsonObject = new JSONObject(response);
                                     String ncbcoltwo = jsonObject.getString("ncbcoltwo");
                                     String ncbcolfour = jsonObject.getString("ncbcolfour");
                                     String ncbcolfive = jsonObject.getString("ncbcolfive");
@@ -90,11 +88,6 @@ public class NorthBreakfast extends AppCompatActivity {
                                     editTextItemName4.setText(ncbcolfour);
                                     editTextItemName5.setText(ncbcolfive);
                                     editTextItemName6.setText(ncbcolsix);
-                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
-                                    //hist_list.add(h);
-                                }
-                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
-                                //recyclerView.setAdapter(historyAdapter);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

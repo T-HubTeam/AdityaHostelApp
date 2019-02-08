@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -50,7 +51,7 @@ public class NorthDinner extends AppCompatActivity {
         setContentView(R.layout.activity_north_dinner);
         progressDialog = new ProgressDialog(NorthDinner.this);
         progressDialog.setMessage("Please wait...");
-        sharedPreferencesData=new SharedPreferencesData(NorthDinner.this);
+        sharedPreferencesData = new SharedPreferencesData(NorthDinner.this);
         rg1 = findViewById(R.id.rg19);
         rg2 = findViewById(R.id.rg20);
         rg3 = findViewById(R.id.rg21);
@@ -88,9 +89,7 @@ public class NorthDinner extends AppCompatActivity {
                             //progressDialog.dismiss();
                             //if(!response.equals("False")) {
                             try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    JSONObject jsonObject = new JSONObject(response);
                                     String ncdcoltwo = jsonObject.getString("ncdcoltwo");
                                     String ncdcolthree = jsonObject.getString("ncdcolthree");
                                     String ncdcolfour = jsonObject.getString("ncdcolfour");
@@ -103,11 +102,6 @@ public class NorthDinner extends AppCompatActivity {
                                     editTextItemName5.setText(ncdcolfive);
                                     editTextItemName7.setText(ncdcolseven);
                                     editTextItemName8.setText(ncdcoleight);
-                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
-                                    //hist_list.add(h);
-                                }
-                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
-                                //recyclerView.setAdapter(historyAdapter);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

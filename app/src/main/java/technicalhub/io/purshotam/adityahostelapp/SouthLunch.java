@@ -88,9 +88,7 @@ public class SouthLunch extends AppCompatActivity {
                             //progressDialog.dismiss();
                             //if(!response.equals("False")) {
                             try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    JSONObject jsonObject = new JSONObject(response);
                                     String sclcoltwo = jsonObject.getString("sclcoltwo");
                                     String sclcolfour = jsonObject.getString("sclcolfour");
                                     String sclcolfive = jsonObject.getString("sclcolfive");
@@ -103,11 +101,6 @@ public class SouthLunch extends AppCompatActivity {
                                     editTextItemName7.setText(sclcolseven);
                                     editTextItemName8.setText(sclcoleight);
                                     editTextItemName9.setText(sclcolnine);
-                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
-                                    //hist_list.add(h);
-                                }
-                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
-                                //recyclerView.setAdapter(historyAdapter);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

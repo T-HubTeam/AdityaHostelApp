@@ -70,18 +70,11 @@ public class SouthEveningSnacks extends AppCompatActivity {
                             //progressDialog.dismiss();
                             //if(!response.equals("False")) {
                             try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = jsonArray.length()-1; i >=0 ; i--) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    JSONObject jsonObject = new JSONObject(response);
                                     String scscolone = jsonObject.getString("scscolone");
                                     String scscoltwo = jsonObject.getString("scscoltwo");
                                     editTextItemName1.setText(scscolone);
                                     editTextItemName2.setText(scscoltwo);
-                                    //ComplainHistory.HistoryData h = new ComplainHistory.HistoryData(string_category, string_code, string_description,Stringdate);
-                                    //hist_list.add(h);
-                                }
-                                //ComplainHistory.HistoryAdapter historyAdapter = new ComplainHistory.HistoryAdapter(hist_list, ComplainHistory.this);
-                                //recyclerView.setAdapter(historyAdapter);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
