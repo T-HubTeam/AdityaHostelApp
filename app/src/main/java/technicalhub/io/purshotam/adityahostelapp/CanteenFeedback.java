@@ -51,22 +51,24 @@ public class CanteenFeedback extends AppCompatActivity {
         else if(sharedPreferencesData.GetMess().equals("South")){
             mess = "s";
         }
-        //Actual timing 7:30 to 9:00
-        //Change 2 BBK 7:00 AM to 8:00 AM
-        if(Time >= (7*60) && Time <= (8*60)){
+        //Previous timing 7:30 to 9:00
+        //Change 2 BBK 7:30 AM to 8:30 AM
+        if(Time >= (7*60+30) && Time <= (8*60+30)){
             food = mess+"Breakfast";
         }
-        //Actual timing 12:00 to 2:00
+        //Previous timing 12:00 to 2:00
         //Change 2 BBK 12:00 PM to 1:30 PM
         else if(Time >= (12*60) && Time <= (13*60+30)){
             food = mess+"Lunch";
         }
-        //Actual timing 4:30 to 6
-        else if(Time >= (16*60+30) && Time <= (18*60)){
+        //Previous timing 4:30 to 6
+        //Change 2 BBK 4:30 AM to 5:30 AM
+        else if(Time >= (16*60+30) && Time <= (17*60+30)){
             food = mess+"EveningSnacks";
         }
-        //Actual timing 7:00 to 9:00
-        else if(Time >= (19*60) && Time <= (21*60)){
+        //Previous timing 7:00 to 9:00
+        //Change 2 BBK 7:00 PM to 8:00 PM
+        else if(Time >= (19*60) && Time <= (20*60)){
             food = mess+"Dinner";
         }
         else{
@@ -88,9 +90,9 @@ public class CanteenFeedback extends AppCompatActivity {
                             canteenlayout.setVisibility(View.VISIBLE);
                             Toast.makeText(getApplicationContext(),"Sorry !! please check the feedback timings",Toast.LENGTH_SHORT).show();
                         }
-                        else if(time >= (7*60+30) && time <=(21*60))
+                        else if(time >= (7*60+30) && time <=(20*60))
                         {
-                            if(time >= (7*60+30) && time <= (9*60)){
+                            if(time >= (7*60+30) && time <= (8*60+30)){
                                 //Breakfast Intent
                                 switch (sharedPreferencesData.GetMess()){
                                     case "North":
@@ -103,7 +105,7 @@ public class CanteenFeedback extends AppCompatActivity {
                                         break;
                                 }
                             }
-                            else if(time >= (12*60) && time <= (14*60)){
+                            else if(time >= (12*60) && time <= (13*60+30)){
                                 //Lunch Intent
                                 switch (sharedPreferencesData.GetMess()){
                                     case "North":
@@ -115,7 +117,7 @@ public class CanteenFeedback extends AppCompatActivity {
                                         finish();
                                         break;
                                 }
-                            }else if(time >= (16*60+30) && time <= (18*60)){
+                            }else if(time >= (16*60+30) && time <= (17*60+30)){
                                 //Evening Snacks
                                 switch (sharedPreferencesData.GetMess()){
                                     case "North":
@@ -127,7 +129,7 @@ public class CanteenFeedback extends AppCompatActivity {
                                         finish();
                                         break;
                                 }
-                            }else if(time >= (19*60) && time <= (21*60)){
+                            }else if(time >= (19*60) && time <= (20*60)){
                                 //Dinner Intent
                                 switch (sharedPreferencesData.GetMess()){
                                     case "North":

@@ -45,7 +45,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Breakfast            :  7:00AM - 8:00AM"
+                android:text="Breakfast            :  7:30AM - 8:30AM"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
@@ -74,7 +74,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Evening Snacks  :  4:30PM - 6:00PM"
+                android:text="Evening Snacks  :  4:30PM - 5:30PM"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
@@ -88,7 +88,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dinner                    :  7:00PM - 9:00PM"
+                android:text="Dinner                    :  7:00PM - 8:00PM"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>

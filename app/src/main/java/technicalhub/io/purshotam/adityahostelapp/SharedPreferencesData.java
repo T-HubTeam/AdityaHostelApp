@@ -75,6 +75,17 @@ public class SharedPreferencesData {
         return sharedPreferences.getString("Name","none");
     }
 
+    //It is used to save the block of the user which he/she belongs to for future reference
+    public void SaveBlock(String block){
+        editor.putString("block",block);
+        editor.apply();
+    }
+
+    //It returns the registration number of the user when needed
+    public String GetBlock(){
+        return sharedPreferences.getString("block","none");
+    }
+
     //It is used to save the registration number of the user for future reference
     public void SaveRegistrationNo(String reg){
         editor.putString("RegistrationNo",reg);

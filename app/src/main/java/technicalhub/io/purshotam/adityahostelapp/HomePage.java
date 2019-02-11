@@ -157,6 +157,7 @@ public class HomePage extends AppCompatActivity
                                 sharedPreferencesData.SaveName("none");
                                 sharedPreferencesData.SaveRegistrationNo("none");
                                 sharedPreferencesData.SaveRoom("none");
+                                sharedPreferencesData.SaveBlock("none");
                                 startActivity(new Intent(HomePage.this,LoginPage.class));
                                 finish();
                             }
@@ -192,6 +193,7 @@ public class HomePage extends AppCompatActivity
             TextView myinfo_contact = view.findViewById(R.id.myinfo_contact);
             TextView myinfo_mess = view.findViewById(R.id.myinfo_mess);
             TextView myinfo_room = view.findViewById(R.id.myinfo_room);
+            TextView myinfo_block = view.findViewById(R.id.myinfo_block);
 
             if(sharedPreferencesData.GetProfileImage().equals("none")){
                 myinfo_image.setImageResource(R.drawable.profile);
@@ -205,6 +207,7 @@ public class HomePage extends AppCompatActivity
             myinfo_contact.setText(sharedPreferencesData.GetContactNo());
             myinfo_mess.setText(sharedPreferencesData.GetMess());
             myinfo_room.setText(sharedPreferencesData.GetRoom());
+            myinfo_block.setText(sharedPreferencesData.GetBlock());
             alertDialog.setView(view);
             AlertDialog dialog = alertDialog.create();
             dialog.show();

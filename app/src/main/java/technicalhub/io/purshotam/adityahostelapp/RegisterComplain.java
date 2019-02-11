@@ -192,6 +192,7 @@ public class RegisterComplain extends AppCompatActivity implements AdapterView.O
                         param.put("code",code);
                         param.put("room",sharedPreferencesData.GetRoom());
                         param.put("gender",sharedPreferencesData.GetGender());
+                        param.put("block",sharedPreferencesData.GetBlock());
                         return param;
                     }
                 };

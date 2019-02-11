@@ -127,6 +127,7 @@ public class LoginPage extends AppCompatActivity {
                                             sharedPreferencesData.SaveRoom(jsonObject.getString("roomNo"));
                                             sharedPreferencesData.SaveGender(jsonObject.getString("gender"));
                                             sharedPreferencesData.SaveEmailId(jsonObject.getString("email"));
+                                            sharedPreferencesData.SaveBlock(jsonObject.getString("block"));
                                             if (jsonObject.getString("mess").equals("S")) {
                                                 sharedPreferencesData.SaveMess("South");
                                             } else if (jsonObject.getString("mess").equals("N")) {
