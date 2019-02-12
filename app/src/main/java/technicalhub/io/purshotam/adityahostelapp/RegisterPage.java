@@ -161,6 +161,7 @@ public class RegisterPage extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> param=new HashMap<>();
                     param.put("regNo",registrationNo.getText().toString());
+                    param.put("emailid",sharedPreferencesData.GetEmailId());
                     return param;
                 }
             };

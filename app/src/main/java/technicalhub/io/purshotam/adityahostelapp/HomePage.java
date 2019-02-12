@@ -132,7 +132,14 @@ public class HomePage extends AppCompatActivity
             else{
                 Toast.makeText(HomePage.this,"No network",Toast.LENGTH_LONG).show();
             }
-        } else if (id == R.id.change_contactNo) {
+        } else if (id == R.id.timings) {
+            if (sharedPreferencesData.isNetworkAvailable()) {
+                startActivity(new Intent(HomePage.this, Timings.class));
+            } else {
+                Toast.makeText(HomePage.this, "No network", Toast.LENGTH_LONG).show();
+            }
+        }
+        else if (id == R.id.change_contactNo) {
             if(sharedPreferencesData.isNetworkAvailable()){
                 startActivity(new Intent(HomePage.this,ChangeContactNumber.class));
             }

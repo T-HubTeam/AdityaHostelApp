@@ -7,34 +7,39 @@
         <item
             android:id="@+id/change_password"
             android:icon="@drawable/setting"
-            android:title="Change Password" />
+            android:title="@string/change_password" />
         <item
             android:id="@+id/change_contactNo"
             android:icon="@drawable/changecontact"
-            android:title="Change Contact Number" />
+            android:title="@string/change_contact_number" />
 
         <item
             android:id="@+id/view_account"
             android:icon="@drawable/info"
-            android:title="My Details" />
+            android:title="@string/my_details" />
+
+        <item
+            android:id="@+id/timings"
+            android:icon="@drawable/ic_watch_later_black_24dp"
+            android:title="@string/timings" />
 
         <item
             android:id="@+id/view_developed_by"
             android:icon="@drawable/ic_developer_mode_black_24dp"
-            android:title="Developed By" />
+            android:title="@string/developed_by" />
 
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
-            android:title="Logout" />
+            android:title="@string/logout" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             
         </menu>
     </item>

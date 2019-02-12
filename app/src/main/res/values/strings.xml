@@ -59,4 +59,19 @@
     <string name="_5_tea_milk">5.Tea / Milk</string>
     <string name="south_canteen_dinner_feedback">South Canteen Dinner Feedback</string>
     <string name="south_canteen_evening_snacks_feedback">South Canteen Evening Snacks Feedback</string>
+    <string name="doctor_timings">Doctor Timings</string>
+    <string name="gym_timings">Gym Timings</string>
+    <string name="computer_lab_timings">Computer Lab Timings</string>
+    <string name="_05_00_pm_to_10_00_pm">05:00 PM to 10:00 PM</string>
+    <string name="_05_00_am_to_07_00_am">05:00 AM to 07:00 AM</string>
+    <string name="_05_00_pm_to_05_30_pm_boys_hostel">05:00 PM to 05:30 PM (Boys Hostel)</string>
+    <string name="_04_30_pm_to_5_00_pm_girls_hostel">04:30 PM to 5:00 PM (Girls Hostel)</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_contact_number">Change Contact Number</string>
+    <string name="my_details">My Details</string>
+    <string name="developed_by">Developed By</string>
+    <string name="logout">Logout</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="timings">Timings</string>
 </resources>
