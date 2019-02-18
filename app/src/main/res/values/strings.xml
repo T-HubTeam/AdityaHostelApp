@@ -74,4 +74,7 @@
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
     <string name="timings">Timings</string>
+    <string name="description">Description</string>
+    <string name="code">Code</string>
+    <string name="date">Date</string>
 </resources>

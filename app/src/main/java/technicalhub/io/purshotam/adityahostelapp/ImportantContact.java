@@ -60,6 +60,7 @@ public class ImportantContact extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             for(int i = 0; i < jsonArray.length(); i++){
+                                //Toast.makeText(ImportantContact.this, ""+jsonArray.length(), Toast.LENGTH_SHORT).show();
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String name = jsonObject.getString("name");
                                 String rank = jsonObject.getString("rank");
